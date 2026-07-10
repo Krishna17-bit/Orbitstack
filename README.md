@@ -1,6 +1,6 @@
 # OrbitStack: Spacecraft & Constellation Reliability Engine
 
-OrbitStack is a production-ready reliability planning, fault simulation, and telemetry tracking engine designed for sub-micron Commercial Off-The-Shelf (COTS) computing architectures deployed in extreme space environments.
+OrbitStack is a reliability planning, fault simulation, and telemetry tracking engine designed for sub-micron Commercial Off-The-Shelf (COTS) computing architectures deployed in extreme space environments.
 
 By coupling multiphysics models (Thermal-Radiation Synergy) and simulating software-defined fault mitigation strategies (TMR, dynamic checkpointing, workload throttling), OrbitStack bridges the gap between pre-launch trajectory planning and live digital twin constellation monitoring.
 
