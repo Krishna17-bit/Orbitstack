@@ -322,3 +322,91 @@ class TelemetryEventResponse(TelemetryEventCreate):
 
     class Config:
         from_attributes = True
+
+# --- Solar Storm Schemas ---
+class SolarStormTrigger(BaseModel):
+    flare_class: str = "X"
+    intensity: float = 3.0
+
+class SolarStormResponse(BaseModel):
+    id: int
+    timestamp: datetime
+    flare_class: str
+    intensity: float
+    status: str
+    mitigations_active: str
+
+    class Config:
+        from_attributes = True
+
+class SolarStatusResponse(BaseModel):
+    flare_class: str
+    intensity: float
+    status: str
+    base_flux: float
+    solar_wind_speed: float
+    active_mitigations: List[str]
+
+# --- Power Grid Schemas ---
+class PowerStateResponse(BaseModel):
+    id: int
+    node_id: int
+    battery_soc: float
+    battery_soh: float
+    solar_generation: float
+    battery_temperature: float
+    internal_resistance: float
+    timestamp: datetime
+
+    class Config:
+        from_attributes = True
+
+class PowerSchedulerToggle(BaseModel):
+    enabled: bool
+
+# --- Consensus Schemas ---
+class ConsensusRoundResponse(BaseModel):
+    id: int
+    round: int
+    block_height: int
+    node_id: int
+    vote_type: str
+    status: str
+    timestamp: datetime
+
+    class Config:
+        from_attributes = True
+
+class ConsensusProposeRequest(BaseModel):
+    data: str
+
+class ConsensusByzantineTrigger(BaseModel):
+    node_id: int
+    corrupt: bool
+
+# --- Network/ISL Topology Schemas ---
+class NetworkNode(BaseModel):
+    id: int
+    name: str
+    x: float
+    y: float
+    status: str
+    load: float
+
+class NetworkLink(BaseModel):
+    source: int
+    target: int
+    status: str
+    latency_ms: float
+    packet_loss_pct: float
+
+class NetworkTopologyResponse(BaseModel):
+    nodes: List[NetworkNode]
+    links: List[NetworkLink]
+
+class RouteTraceResponse(BaseModel):
+    path: List[str]
+    latency_ms: float
+    packet_loss_pct: float
+    success: bool
+

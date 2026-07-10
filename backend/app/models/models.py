@@ -271,3 +271,41 @@ class TelemetryEvent(Base):
     raw_payload_json = Column(Text, nullable=False)
     ingestion_source = Column(String, default="API")
     created_at = Column(DateTime, default=datetime.utcnow)
+
+class SolarStormEvent(Base):
+    __tablename__ = "solar_storm_events"
+
+    id = Column(Integer, primary_key=True, index=True)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+    flare_class = Column(String, nullable=False)
+    intensity = Column(Float, nullable=False)
+    status = Column(String, default="active")
+    mitigations_active = Column(Text, default="[]")  # JSON list of mitigations run
+
+class PowerState(Base):
+    __tablename__ = "power_states"
+
+    id = Column(Integer, primary_key=True, index=True)
+    node_id = Column(Integer, ForeignKey("nodes.id"), nullable=False)
+    battery_soc = Column(Float, default=100.0)       # State of Charge %
+    battery_soh = Column(Float, default=100.0)       # State of Health %
+    solar_generation = Column(Float, default=50.0)   # Solar power input in Watts
+    battery_temperature = Column(Float, default=20.0) # Battery temperature in C
+    internal_resistance = Column(Float, default=0.02) # Battery internal resistance in Ohms
+    timestamp = Column(DateTime, default=datetime.utcnow)
+
+    node = relationship("Node", backref="power_states")
+
+class ConsensusLog(Base):
+    __tablename__ = "consensus_logs"
+
+    id = Column(Integer, primary_key=True, index=True)
+    round = Column(Integer, nullable=False)
+    block_height = Column(Integer, nullable=False)
+    node_id = Column(Integer, ForeignKey("nodes.id"), nullable=False)
+    vote_type = Column(String, nullable=False)       # PREPARE, COMMIT
+    status = Column(String, default="honest")        # honest, byzantine
+    timestamp = Column(DateTime, default=datetime.utcnow)
+
+    node = relationship("Node", backref="consensus_logs")
+

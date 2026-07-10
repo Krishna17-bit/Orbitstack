@@ -78,4 +78,24 @@ export const api = {
   getKernelRuns: (id: number) => request(`/api/kernels/${id}/runs`),
   getGlobalRiskHistory: () => request("/api/risk/history"),
   getCurrentGlobalRisk: () => request("/api/risk/global"),
+
+  // --- Extension Features ---
+  triggerSolarStorm: (data: any) => request("/api/solar/trigger", { method: "POST", body: JSON.stringify(data) }),
+  getSolarStatus: () => request("/api/solar/status"),
+  resolveSolarStorm: () => request("/api/solar/resolve", { method: "POST" }),
+  getSolarEvents: () => request("/api/solar/events"),
+
+  getNetworkTopology: () => request("/api/network/topology"),
+  traceRoute: (targetNodeId: number) => request(`/api/network/route/${targetNodeId}`),
+
+  getPowerStatus: () => request("/api/power/status"),
+  getEclipseStatus: () => request("/api/power/eclipse"),
+  rejuvenateNodePower: (nodeId: number) => request(`/api/power/rejuvenate/${nodeId}`, { method: "POST" }),
+  getPowerScheduler: () => request("/api/power/scheduler"),
+  togglePowerScheduler: (enabled: boolean) => request("/api/power/scheduler/toggle", { method: "POST", body: JSON.stringify({ enabled }) }),
+
+  getReplicas: () => request("/api/consensus/replicas"),
+  proposeBlock: (data: string) => request("/api/consensus/propose", { method: "POST", body: JSON.stringify({ data }) }),
+  toggleByzantine: (nodeId: number, corrupt: boolean) => request("/api/consensus/byzantine", { method: "POST", body: JSON.stringify({ node_id: nodeId, corrupt }) }),
 };
+

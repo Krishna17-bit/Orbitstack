@@ -15,7 +15,11 @@ import {
   BrainCircuit,
   Rocket,
   BookOpen,
-  Terminal
+  Terminal,
+  Sun,
+  BatteryCharging,
+  Share2,
+  Shield
 } from "lucide-react";
 
 export function Sidebar() {
@@ -23,6 +27,10 @@ export function Sidebar() {
 
   const links = [
     { name: "Overview", href: "/", icon: LayoutDashboard },
+    { name: "Solar Weather", href: "/solar", icon: Sun },
+    { name: "Constellation ISL", href: "/network", icon: Share2 },
+    { name: "Solar-Battery Power", href: "/power", icon: BatteryCharging },
+    { name: "BFT Consensus", href: "/consensus", icon: Shield },
     { name: "Digital Twins", href: "/twins", icon: Database },
     { name: "Predictive ML", href: "/predictive", icon: BrainCircuit },
     { name: "Mission Planner", href: "/mission", icon: Rocket },

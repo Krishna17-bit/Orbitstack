@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.core.database import engine, Base, SessionLocal
 from app.models import models
-from app.routers import nodes, fault_sim, thermal, checkpoint, ecc, graph, recovery, dashboard, twins, ml, mission, kernels, radiation, risk
+from app.routers import nodes, fault_sim, thermal, checkpoint, ecc, graph, recovery, dashboard, twins, ml, mission, kernels, radiation, risk, solar, network, power, consensus
 from datetime import datetime
 from app.services.radiation_data import seed_radiation_profiles
 from app.services.kernel_sandbox import seed_kernel_profiles
@@ -37,6 +37,10 @@ app.include_router(mission.router, prefix="/api")
 app.include_router(kernels.router, prefix="/api")
 app.include_router(radiation.router, prefix="/api")
 app.include_router(risk.router, prefix="/api")
+app.include_router(solar.router, prefix="/api")
+app.include_router(network.router, prefix="/api")
+app.include_router(power.router, prefix="/api")
+app.include_router(consensus.router, prefix="/api")
 
 @app.get("/")
 def read_root():
@@ -130,6 +134,16 @@ def seed_database():
                     correctable_errors=0,
                     uncorrectable_errors=0,
                     status="online",
+                    timestamp=datetime.utcnow()
+                ))
+                # Add default PowerState
+                db.add(models.PowerState(
+                    node_id=node.id,
+                    battery_soc=100.0,
+                    battery_soh=100.0,
+                    solar_generation=50.0,
+                    battery_temperature=20.0,
+                    internal_resistance=0.02,
                     timestamp=datetime.utcnow()
                 ))
             db.commit()
