@@ -1,0 +1,128 @@
+{
+  "timestamp": "2026-07-10T12:33:18.604144",
+  "dataset_size": 100,
+  "features": [
+    "current_temperature",
+    "mean_temperature_24h",
+    "thermal_cycles",
+    "radiation_dose",
+    "seu_count",
+    "ecc_error_count",
+    "multi_bit_error_count",
+    "uptime_hours",
+    "shielding_mm",
+    "orbit_region_encoded",
+    "redundancy_level",
+    "checkpoint_interval",
+    "workload_intensity",
+    "topology_blast_radius",
+    "previous_failures"
+  ],
+  "targets": {
+    "node_failure_next_24h": {
+      "model_type": "RandomForestClassifier",
+      "accuracy": 0.9,
+      "precision": 0.8461538461538461,
+      "recall": 1.0,
+      "f1_score": 0.9166666666666666,
+      "auc": 0.98989898989899,
+      "confusion_matrix": [
+        [
+          7,
+          2
+        ],
+        [
+          0,
+          11
+        ]
+      ],
+      "feature_importances": {
+        "seu_count": 0.25472571294109536,
+        "radiation_dose": 0.20485065157748628,
+        "ecc_error_count": 0.1318166447359905,
+        "orbit_region_encoded": 0.09624061890615404,
+        "uptime_hours": 0.04844646535962191,
+        "shielding_mm": 0.04745195192588225,
+        "topology_blast_radius": 0.03908720967492303,
+        "redundancy_level": 0.03770051394069759,
+        "workload_intensity": 0.032360060003899065,
+        "mean_temperature_24h": 0.03065701318335786,
+        "thermal_cycles": 0.028410118917440854,
+        "current_temperature": 0.02112302371311559,
+        "checkpoint_interval": 0.014824264116182633,
+        "previous_failures": 0.011571351742748908,
+        "multi_bit_error_count": 0.000734399261404175
+      }
+    },
+    "ecc_burst_next_24h": {
+      "model_type": "GradientBoostingClassifier",
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "auc": 1.0,
+      "confusion_matrix": [
+        [
+          6,
+          0
+        ],
+        [
+          0,
+          14
+        ]
+      ],
+      "feature_importances": {
+        "radiation_dose": 0.8941798941798943,
+        "ecc_error_count": 0.06783340116673443,
+        "shielding_mm": 0.013671132644896911,
+        "seu_count": 0.009369284379064055,
+        "workload_intensity": 0.008136527328023028,
+        "orbit_region_encoded": 0.004406450395147284,
+        "topology_blast_radius": 0.0024033099062400485,
+        "mean_temperature_24h": 8.367200166542124e-17,
+        "current_temperature": 0.0,
+        "thermal_cycles": 0.0,
+        "multi_bit_error_count": 0.0,
+        "uptime_hours": 0.0,
+        "redundancy_level": 0.0,
+        "checkpoint_interval": 0.0,
+        "previous_failures": 0.0
+      }
+    },
+    "thermal_runaway_next_24h": {
+      "model_type": "RandomForestClassifier",
+      "accuracy": 0.9,
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1_score": 0.6666666666666666,
+      "auc": 0.9296875,
+      "confusion_matrix": [
+        [
+          16,
+          0
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "feature_importances": {
+        "mean_temperature_24h": 0.4588936413868682,
+        "current_temperature": 0.28989104002449356,
+        "topology_blast_radius": 0.044190066818857635,
+        "workload_intensity": 0.038036127574211695,
+        "radiation_dose": 0.03604148625959595,
+        "checkpoint_interval": 0.029242288995124287,
+        "uptime_hours": 0.02654357230693213,
+        "seu_count": 0.024048622437575686,
+        "ecc_error_count": 0.02029920535320419,
+        "shielding_mm": 0.010526662748736744,
+        "thermal_cycles": 0.008973377938994269,
+        "redundancy_level": 0.007910850797279824,
+        "orbit_region_encoded": 0.0030324719686725264,
+        "previous_failures": 0.0023705853894533113,
+        "multi_bit_error_count": 0.0
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "features": [
+    "current_temperature",
+    "mean_temperature_24h",
+    "thermal_cycles",
+    "radiation_dose",
+    "seu_count",
+    "ecc_error_count",
+    "multi_bit_error_count",
+    "uptime_hours",
+    "shielding_mm",
+    "orbit_region_encoded",
+    "redundancy_level",
+    "checkpoint_interval",
+    "workload_intensity",
+    "topology_blast_radius",
+    "previous_failures"
+  ]
+}
